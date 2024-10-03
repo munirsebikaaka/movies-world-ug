@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./header";
 import AllAboutMoviesDeTails from "./recieveMoviesDetails";
 
@@ -26,10 +27,11 @@ const tempMovieData = [
 ];
 
 function App() {
+  const [movies, setMovies] = useState(tempMovieData);
   return (
     <div>
       <Header />
-      <AllAboutMoviesDeTails tempMovieData={tempMovieData} />
+      <AllAboutMoviesDeTails onMovies={movies} />
     </div>
   );
 }
