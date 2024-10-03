@@ -1,6 +1,6 @@
 export default function AllAboutMoviesDeTails({ tempMovieData }) {
   return (
-    <div>
+    <div className="main">
       <MoviesList tempMovieData={tempMovieData} />
       <WatchedMovies />
     </div>
@@ -8,8 +8,8 @@ export default function AllAboutMoviesDeTails({ tempMovieData }) {
 }
 function MoviesList({ tempMovieData }) {
   return (
-    <div>
-      <ul>
+    <div className="box">
+      <ul className="list list-movies">
         {tempMovieData.map((el) => (
           <li key={el.Title}>
             {" "}
@@ -22,5 +22,5 @@ function MoviesList({ tempMovieData }) {
   );
 }
 function WatchedMovies() {
-  return <div>watched</div>;
+  return <div className="box">watched</div>;
 }

@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <div>
+    <div className="nav-bar">
       <Logo />
       <InputMovies />
       <NumberOfMovies />
@@ -11,9 +11,9 @@ function Logo() {
   return <h1 className="logo">CodesmannDev</h1>;
 }
 function InputMovies() {
-  return <input type="text" placeholder="input move name" />;
+  return <input type="text" placeholder="input move name" className="search" />;
 }
 function NumberOfMovies() {
-  return <p>Codesmann movies</p>;
+  return <p className="num-results">Codesmann movies</p>;
 }
 export default Header;
