@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./header";
 import AllAboutMoviesDeTails from "./recieveMoviesDetails";
 
@@ -26,11 +26,22 @@ const tempMovieData = [
   },
 ];
 
+const KEY = "ef1735bd";
+
 function App() {
-  const [movies, setMovies] = useState(tempMovieData);
+  const [movies, setMovies] = useState([]);
+  const [movie, setMovie] = useState("wrong turn");
+  useEffect(
+    function () {
+      fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${movie}`)
+        .then((res) => res.json())
+        .then((data) => setMovies(data.Search));
+    },
+    [movie]
+  );
   return (
     <div>
-      <Header />
+      <Header onMovies={movies} onGeMovie={movie} onSetGetMovie={setMovie} />
       <AllAboutMoviesDeTails onMovies={movies} />
     </div>
   );
