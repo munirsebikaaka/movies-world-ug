@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 const KEY = "ef1735bd";
+
 export default function MoviesInformation({ onMovieId }) {
   const [details, setDetails] = useState("");
   const {
@@ -14,16 +15,20 @@ export default function MoviesInformation({ onMovieId }) {
     Runtime,
     imdbRating,
   } = details;
-  useEffect(function () {
-    fetch(`http://www.omdbapi.com/?apikey=${KEY}&i=${onMovieId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setDetails(data);
-      });
-  }, []);
+
+  useEffect(
+    function () {
+      fetch(`http://www.omdbapi.com/?apikey=${KEY}&i=${onMovieId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setDetails(data);
+        });
+    },
+    [onMovieId]
+  );
 
   return (
-    <div className="details">
+    <div>
       <header>
         <img src={Poster} alt={`poster of ${details}`} />
         <div className="details-overview">
@@ -33,7 +38,7 @@ export default function MoviesInformation({ onMovieId }) {
           </p>
           <p>{Genre}</p>
           <p>
-            <span>⭐️</span>
+            <span>⭐️</span>Rating
             {imdbRating} IMDB rating
           </p>
         </div>
