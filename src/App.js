@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./header";
 import AllAboutMoviesDeTails from "./recieveMoviesDetails";
-
+import disAbleDrill from "./setContext";
 const KEY = "ef1735bd";
 
 // const tempMovieData = [
@@ -47,11 +47,9 @@ function App() {
   return (
     <div>
       <Header onMovies={movies} onGeMovie={movie} onSetGetMovie={setMovie} />
-      <AllAboutMoviesDeTails
-        onMovies={movies}
-        onSetMovieID={setMovieId}
-        onMovieId={movieId}
-      />
+      <disAbleDrill.Provider value={movieId}>
+        <AllAboutMoviesDeTails onMovies={movies} onSetMovieID={setMovieId} />
+      </disAbleDrill.Provider>
     </div>
   );
 }
