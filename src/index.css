@@ -53,9 +53,10 @@ body {
 .main {
   margin-top: 2.4rem;
   height: calc(100vh - 7.2rem - 3 * 2.4rem);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2.4rem;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .list {
   list-style: none;
@@ -89,12 +90,11 @@ body {
   position: relative;
 }
 .details {
-  /* line-height: 1.4; */
-  /* font-size: 1.4rem; */
-  width: 70%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
+  color: var(--color-text);
+  font-family: serif;
+  font-size: 1rem;
 }
 
 .details header {
@@ -109,8 +109,9 @@ body {
 }
 
 .details img {
-  width: 40%;
-  height: 300px;
+  width: 33%;
+  height: 200px;
+  border-radius: 11px;
 }
 
 .details-overview {

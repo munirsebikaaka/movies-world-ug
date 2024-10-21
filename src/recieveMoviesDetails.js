@@ -2,26 +2,16 @@ import { useState } from "react";
 import MoviesInformation from "./moviesInfor";
 
 export default function AllAboutMoviesDeTails({ onMovies, onSetMovieID }) {
-  const [showDetail, setShowDetail] = useState(false);
   const [showDetailCell, setShowDetailCell] = useState(false);
-  function showDetails() {
-    setShowDetail(true);
-    setShowDetailCell(true);
-  }
+
   function onGetMovieID(ID) {
     onSetMovieID(ID);
+    setShowDetailCell(true);
   }
   return (
     <div className="main">
-      <MoviesList
-        onMovies={onMovies}
-        onHandleShowDetails={showDetails}
-        onGetMovieID={onGetMovieID}
-      />
-      <MoviesInformation
-        onShowDetail={showDetail}
-        onHandleShowDetailsCell={showDetailCell}
-      />
+      <MoviesList onMovies={onMovies} onGetMovieID={onGetMovieID} />
+      <MoviesInformation showDetailCell={showDetailCell} />
     </div>
   );
 }

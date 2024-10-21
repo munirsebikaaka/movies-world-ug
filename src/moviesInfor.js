@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import disAbleDrill from "./setContext";
 const KEY = "ef1735bd";
 
-export default function MoviesInformation(onHandleShowDetailsCell) {
+export default function MoviesInformation({ showDetailCell }) {
   const movieId = useContext(disAbleDrill);
 
   const [details, setDetails] = useState("");
@@ -29,10 +29,9 @@ export default function MoviesInformation(onHandleShowDetailsCell) {
     },
     [movieId]
   );
-
   return (
     <div>
-      {onHandleShowDetailsCell ? (
+      {showDetailCell ? (
         <div className="details">
           <header>
             <img src={Poster} alt={`poster of ${details}`} />
