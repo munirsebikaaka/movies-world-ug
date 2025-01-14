@@ -22,6 +22,6 @@ function InputMovies({ onGetMovie, onSetGetMovie }) {
   );
 }
 function NumberOfMovies({ onMovies }) {
-  return <p className="num-results"> {onMovies.length} movies found</p>;
+  return <p className="num-results"> {onMovies?.length} movies found</p>;
 }
 export default Header;

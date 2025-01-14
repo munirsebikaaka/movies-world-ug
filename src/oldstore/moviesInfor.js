@@ -1,10 +1,9 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import disAbleDrill from "./setContext";
-const KEY = "ef1735bd";
+import { useFectchedData } from "./custom";
 
 export default function MoviesInformation({ showDetailCell }) {
   const movieId = useContext(disAbleDrill);
-
   const [details, setDetails] = useState("");
 
   const {
@@ -19,16 +18,8 @@ export default function MoviesInformation({ showDetailCell }) {
     imdbRating,
   } = details;
 
-  useEffect(
-    function () {
-      fetch(`http://www.omdbapi.com/?apikey=${KEY}&i=${movieId}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setDetails(data);
-        });
-    },
-    [movieId]
-  );
+  useFectchedData(movieId, setDetails);
+
   return (
     <div>
       {showDetailCell ? (
