@@ -6,19 +6,19 @@ function Login({ acounts }) {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [showHome, setShowHome] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
+
   function checkInputs() {
     if (!name || !email || !password || !phone)
-      return console.log("fill in all the inputs");
-    acounts.map((el) => {
-      if (phone === el.phone && password === el.password) setShowHome(true);
-      else {
-        console.log("somthing wrong");
-      }
-    });
-    // setShowHome(true);
+      return setAlertMsg("please fill in all the inputs");
+    acounts.map(
+      (el) =>
+        phone === el.phone && password === el.password && setShowHome(true)
+    );
   }
   return (
     <div>
+      <h1>{alertMsg}</h1>
       <input
         type="text"
         placeholder="name"

@@ -7,6 +7,7 @@
 
 import { useState } from "react";
 import Login from "./newStore/login";
+import SignIn from "./newStore/signIn";
 
 function App() {
   const [acounts, setAcounts] = useState([
@@ -20,6 +21,7 @@ function App() {
   return (
     <div>
       <Login acounts={acounts} />
+      <SignIn acounts={acounts} setAcounts={setAcounts} />
     </div>
   );
 
