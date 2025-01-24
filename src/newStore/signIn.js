@@ -16,7 +16,6 @@ const SignIn = ({ setAcounts }) => {
   }
   return (
     <div>
-      {/* <h1>{alertMsg}</h1> */}
       <input
         type="text"
         placeholder="name"

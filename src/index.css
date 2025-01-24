@@ -129,3 +129,86 @@ body {
   align-items: center;
   gap: 0.8rem;
 } */
+
+/* login */
+* {
+  margin: o;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #05080f;
+}
+.login div {
+  margin: 150px auto;
+  max-width: 380px;
+  border-radius: 11px;
+
+  background-color: #161d2f;
+  padding: 30px;
+}
+.login div input,
+.login div .enter {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.login div input {
+  border: none;
+  border-bottom: 1px solid #5a698f;
+  background-color: inherit;
+  height: 20px;
+}
+.login div input:focus {
+  outline: none;
+}
+.login label {
+  color: #ffffff59;
+  font-family: Outfit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.9px;
+  padding-left: 15px;
+}
+.login h1 {
+  color: #fff;
+  font-family: Outfit;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 40.32px;
+  letter-spacing: -0.5px;
+}
+button {
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+.login .enter {
+  font-family: Outfit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.9px;
+  color: #ffffffc4;
+  padding: 10px 0;
+  background-color: #fc4747;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.login p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: Outfit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.9px;
+  color: #ffffffc4;
+}
+.sign {
+  font-family: Outfit;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18.9px;
+  color: #fc4747;
+  background-color: inherit;
+}

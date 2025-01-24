@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Login acounts={acounts} />
-      <SignIn acounts={acounts} setAcounts={setAcounts} />
+      {/* <SignIn acounts={acounts} setAcounts={setAcounts} /> */}
     </div>
   );
 
