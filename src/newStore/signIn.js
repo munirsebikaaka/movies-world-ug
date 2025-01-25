@@ -15,39 +15,43 @@ const SignIn = ({ setAcounts }) => {
     ]);
   }
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="name"
-        onChange={(e) => {
-          setFullName(e.target.value);
-        }}
-      />
-      <input
-        type="email"
-        placeholder="email address"
-        onChange={(e) => {
-          setEmail(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        placeholder="password"
-        onChange={(e) => {
-          setPassword(e.target.value);
-        }}
-      />
-      <input
-        type="number"
-        placeholder="phone number"
-        onChange={(e) => {
-          setPhone(e.target.value);
-        }}
-      />
-      <button onClick={checkInputs}>click</button>
-      <p>
-        aready has an acount <button>log in</button>
-      </p>
+    <div className="login">
+      <div>
+        <input
+          type="text"
+          placeholder="name"
+          onChange={(e) => {
+            setFullName(e.target.value);
+          }}
+        />
+        <input
+          type="email"
+          placeholder="email address"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          placeholder="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <input
+          type="number"
+          placeholder="phone number"
+          onChange={(e) => {
+            setPhone(e.target.value);
+          }}
+        />
+        <button className="enter" onClick={checkInputs}>
+          click
+        </button>
+        <p>
+          aready has an acount <button className="sign">Log In</button>
+        </p>
+      </div>
     </div>
   );
 };
