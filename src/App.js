@@ -13,7 +13,7 @@ function App() {
   const [acounts, setAcounts] = useState([
     {
       name: "codes",
-      email: "codes@gmail.com",
+      email: "co@gmail.com",
       phone: "0742083075",
       password: "codes",
     },
@@ -21,7 +21,7 @@ function App() {
   return (
     <div>
       <Login acounts={acounts} />
-      <SignIn acounts={acounts} setAcounts={setAcounts} />
+      {/* <SignIn acounts={acounts} setAcounts={setAcounts} /> */}
     </div>
   );
 
