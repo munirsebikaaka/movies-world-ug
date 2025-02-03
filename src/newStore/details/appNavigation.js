@@ -8,19 +8,19 @@ import { BsBookmarkFill } from "react-icons/bs";
 const AppNav = () => {
   return (
     <nav>
-      <MdMovie />
+      <MdMovie className="link1" />
       <ul>
         <li>
-          <MdWindow />
+          <MdWindow className="link" />
         </li>
         <li>
-          <MdLocalMovies />
+          <MdLocalMovies className="link" />
         </li>
         <li>
-          <TbDeviceTvOld />
+          <TbDeviceTvOld className="link" />
         </li>
         <li>
-          <BsBookmarkFill />
+          <BsBookmarkFill className="link" />
         </li>
       </ul>
     </nav>

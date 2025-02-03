@@ -8,6 +8,7 @@
 import { useState } from "react";
 import Login from "./newStore/login";
 import SignIn from "./newStore/signIn";
+import HOME from "./newStore/details/home";
 
 function App() {
   const [acounts, setAcounts] = useState([
@@ -20,7 +21,8 @@ function App() {
   ]);
   return (
     <div>
-      <Login acounts={acounts} />
+      <HOME />
+      {/* <Login acounts={acounts} /> */}
       {/* <SignIn acounts={acounts} setAcounts={setAcounts} /> */}
     </div>
   );
