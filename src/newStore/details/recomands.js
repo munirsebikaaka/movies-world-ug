@@ -1,11 +1,20 @@
 import { MdLocalMovies } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { IoIosPlayCircle } from "react-icons/io";
+import { BsBookmarkFill } from "react-icons/bs";
+import { FaRegBookmark } from "react-icons/fa6";
+import Search from "./search";
 
-const Recomands = () => {
-  const [movieDetails, setMovieDetails] = useState([{}]);
-  const [movieDetails2, setMovieDetails2] = useState([{}]);
-  const [showPlay, setShowPlay] = useState(false);
+const Recomands = ({
+  recImgs,
+  setRecImgs,
+  movieDetails,
+  setMovieDetails,
+  movieDetails2,
+  setMovieDetails2,
+  marked,
+  setMarked,
+}) => {
   const news = "Relentless";
   const news2 = "Diary";
   const apikey = "ef1735bd";
@@ -22,57 +31,72 @@ const Recomands = () => {
   //     .then((res) => res.json())
   //     .then((data) => setMovieDetails2(data.Search));
   // }, []);
-  const [recImgs, setRecImgs] = useState([
-    {
-      photoSrc: "imgs/img1.png",
-      movieName: "movie 1",
-      type: "movie",
-      year: 2000,
-      id: 1,
-      play: false,
-    },
-    {
-      photoSrc: "imgs/img2.png",
-      movieName: "movie 2",
-      type: "series",
-      year: 2000,
-      id: 2,
-      play: false,
-    },
-    {
-      photoSrc: "imgs/img4.png",
-      movieName: "movie 3",
-      type: "series",
-      play: false,
-      id: 3,
-      year: 2000,
-    },
-    {
-      photoSrc: "imgs/img3.png",
-      movieName: "movie 4",
-      type: "movie",
-      year: 2000,
-      id: 4,
-      play: false,
-    },
-  ]);
-  function changePlay(id) {
+
+  const changePlay = (id) => {
     setRecImgs(
       recImgs.map((items) =>
         items.id === id ? { ...items, play: true } : items
       )
     );
-  }
-  function setDefault(id) {
+  };
+  const setDefault = (id) => {
     setRecImgs(
       recImgs.map((items) =>
         items.id === id ? { ...items, play: false } : items
       )
     );
+  };
+  function pushToMarked(id) {
+    recImgs.map((el) =>
+      el.id === id
+        ? marked.push({
+            photoSrc: el.photoSrc,
+            movieName: el.movieName,
+            type: el.type,
+            year: el.year,
+            id: el.id,
+            play: el.play,
+          })
+        : ""
+    );
   }
 
   return (
-    <div className="home">
+    <div className="main">
+      <Search />
+
+      <div className="tranding">
+        <h1>Trending</h1>
+        <ul>
+          <li style={{ backgroundImage: "url(imgs/rec1.png)" }}>
+            <div className="det">
+              <p className="year">
+                2019 <MdLocalMovies />
+                movie - PG
+              </p>
+            </div>
+            <h1>Beyond Earth</h1>
+          </li>
+          <li style={{ backgroundImage: "url(imgs/rec2.png)" }}>
+            <div className="det">
+              <p className="year">
+                2021 <MdLocalMovies />
+                movie - PG
+              </p>
+            </div>
+            <h1>Bottom Gear</h1>
+          </li>
+          <li style={{ backgroundImage: "url(imgs/rec3.png)" }}>
+            <div className="det">
+              <p className="year">
+                2019 <MdLocalMovies />
+                TV-series - E
+              </p>
+            </div>
+            <h1>Undiscovered Cities</h1>
+          </li>
+        </ul>
+      </div>
       <h1 className="head">Recomanded for you</h1>
       <ul className="movies-list">
         {recImgs.map((detail) => (
@@ -85,7 +109,7 @@ const Recomands = () => {
                 detail.play === true
                   ? {
                       backgroundImage: `
-                linear-gradient(rgb(0 0 0 /35%),rgb(0 0 0 / 35%)),url(${detail.photoSrc})`,
+                linear-gradient(#00000040,#00000040),url(${detail.photoSrc})`,
                     }
                   : {
                       backgroundImage: `
@@ -97,11 +121,16 @@ const Recomands = () => {
                 <button className="play">
                   <IoIosPlayCircle className="icon-b" />
                   Play
-                  {/*  */}
                 </button>
               ) : (
                 ""
               )}
+              <div className="bookmark-cell">
+                <FaRegBookmark
+                  className="bookmark"
+                  onClick={() => pushToMarked(detail.id)}
+                />
+              </div>
             </div>
             <div className="det">
               <p className="year">

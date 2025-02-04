@@ -1,64 +1,79 @@
-import { useState } from "react";
-import MoviesInformation from "./moviesInfor";
+import { MdLocalMovies } from "react-icons/md";
+import { IoIosPlayCircle } from "react-icons/io";
+import { BsBookmarkFill } from "react-icons/bs";
+import { FaRegBookmark } from "react-icons/fa6";
+import Search from "../newStore/details/search";
+import AppNav from "../newStore/details/appNavigation";
 
-export default function AllAboutMoviesDeTails({
-  onMovies,
-  onSetMovieID,
-  movie,
-}) {
-  const [showDetailCell, setShowDetailCell] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  function onGetMovieID(ID) {
-    onSetMovieID(ID);
-    setShowDetailCell(true);
-  }
+const TVSeries = ({ recImgs }) => {
   return (
-    <div className="main">
-      {onMovies.length < 1 ? (
-        <h1>Please fill in the search bar</h1>
-      ) : (
-        <MoviesList
-          onMovies={onMovies}
-          onGetMovieID={onGetMovieID}
-          movie={movie}
-        />
-      )}
-      {loading ? (
-        <h1>loading........</h1>
-      ) : (
-        <MoviesInformation
-          showDetailCell={showDetailCell}
-          setLoading={setLoading}
-        />
-      )}
+    <div>
+      <AppNav />
+      <div className="main">
+        <Search />
+        <h1 className="head">Recomanded for you</h1>
+        <ul className="movies-list">
+          {recImgs.map((detail) => (
+            <li key={detail.movieName}>
+              <div
+                // onMouseEnter={() => changePlay(detail.id)}
+                // onMouseLeave={() => setDefault(detail.id)}
+                className="list"
+                style={
+                  detail.play === true
+                    ? {
+                        backgroundImage: `
+                linear-gradient(#00000040,#00000040),url(${detail.photoSrc})`,
+                      }
+                    : {
+                        backgroundImage: `
+                url(${detail.photoSrc})`,
+                      }
+                }
+              >
+                {detail.play ? (
+                  <button className="play">
+                    <IoIosPlayCircle className="icon-b" />
+                    Play
+                  </button>
+                ) : (
+                  ""
+                )}
+                <div className="bookmark-cell">
+                  <FaRegBookmark
+                    className="bookmark"
+                    // onClick={() => pushToMarked(detail.id)}
+                  />
+                </div>
+              </div>
+              <div className="det">
+                <p className="year">
+                  {detail.year}
+                  <MdLocalMovies /> {detail.type} - PG
+                </p>
+              </div>
+              <h1>{detail.movieName}</h1>
+            </li>
+          ))}
+
+          {recImgs.map((detail) => (
+            <li key={detail.movieName}>
+              <div
+                className="list"
+                style={{ backgroundImage: `url(${detail.photoSrc})` }}
+              ></div>
+              <div className="det">
+                <p className="year">
+                  {detail.year}
+                  <MdLocalMovies /> {detail.type} - PG
+                </p>
+              </div>
+              <h1>{detail.movieName}</h1>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
-}
-function MoviesList({ onMovies, onGetMovieID, movie }) {
-  return (
-    <>
-      {movie.length > 0 ? (
-        <div className="box">
-          <ul className="list list-movies">
-            {onMovies.map((el) => (
-              <li onClick={() => onGetMovieID(el.imdbID)} key={el.Title}>
-                {" "}
-                <img
-                  src={el.Poster}
-                  alt={`${el.Title} poster`}
-                  className="img"
-                />
-                <div>
-                  <h1>{el.Title}</h1> <span>{el.Year}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <h1>Please fill in the search bar.</h1>
-      )}
-    </>
-  );
-}
+};
+export default TVSeries;

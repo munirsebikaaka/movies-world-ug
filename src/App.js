@@ -1,16 +1,16 @@
-// import { useState } from "react";
-// import Header from "./header";
-// import AllAboutMoviesDeTails from "./recieveMoviesDetails";
-// import disAbleDrill from "./setContext";
-// import { useGetMovies } from "./custom";
-// const KEY = "ef1735bd";
-
 import { useState } from "react";
 import Login from "./newStore/login";
 import SignIn from "./newStore/signIn";
 import HOME from "./newStore/details/home";
+import BookMarks from "./oldstore/header";
+import TVSeries from "./oldstore/recieveMoviesDetails";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Movies from "./oldstore/moviesInfor";
 
 function App() {
+  const [movieDetails, setMovieDetails] = useState([{}]);
+  const [movieDetails2, setMovieDetails2] = useState([{}]);
+  const [marked, setMarked] = useState([]);
   const [acounts, setAcounts] = useState([
     {
       name: "codes",
@@ -19,35 +19,69 @@ function App() {
       password: "codes",
     },
   ]);
+  const [recImgs, setRecImgs] = useState([
+    {
+      photoSrc: "imgs/img1.png",
+      movieName: "movie 1",
+      type: "movie",
+      year: 2000,
+      id: 1,
+      play: false,
+    },
+    {
+      photoSrc: "imgs/img2.png",
+      movieName: "movie 2",
+      type: "series",
+      year: 2000,
+      id: 2,
+      play: false,
+    },
+    {
+      photoSrc: "imgs/img4.png",
+      movieName: "movie 3",
+      type: "series",
+      play: false,
+      id: 3,
+      year: 2000,
+    },
+    {
+      photoSrc: "imgs/img3.png",
+      movieName: "movie 4",
+      type: "movie",
+      year: 2000,
+      id: 4,
+      play: false,
+    },
+  ]);
   return (
     <div>
-      <HOME />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HOME
+                recImgs={recImgs}
+                setRecImgs={setRecImgs}
+                movieDetails={movieDetails}
+                setMovieDetails={setMovieDetails}
+                movieDetails2={movieDetails2}
+                setMovieDetails2={setMovieDetails2}
+                marked={marked}
+                setMarked={setMarked}
+              />
+            }
+          />
+          <Route path="movies" element={<Movies recImgs={recImgs} />} />
+          <Route path="tvseries" element={<TVSeries recImgs={recImgs} />} />
+          <Route path="bookmark" element={<BookMarks marked={marked} />} />
+        </Routes>
+      </BrowserRouter>
+
       {/* <Login acounts={acounts} /> */}
       {/* <SignIn acounts={acounts} setAcounts={setAcounts} /> */}
     </div>
   );
-
-  // const [movies, setMovies] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [movie, setMovie] = useState("");
-  // const [movieId, setMovieId] = useState(null);
-  // useGetMovies(movie, setMovies, setLoading);
-  // return (
-  //   <div>
-  //     <Header onMovies={movies} onGeMovie={movie} onSetGetMovie={setMovie} />
-  //     <disAbleDrill.Provider value={movieId}>
-  //       {loading ? (
-  //         <h1>loading.....</h1>
-  //       ) : (
-  //         <AllAboutMoviesDeTails
-  //           onMovies={movies}
-  //           onSetMovieID={setMovieId}
-  //           movie={movie}
-  //         />
-  //       )}
-  //     </disAbleDrill.Provider>
-  //   </div>
-  // );
 }
 
 export default App;
