@@ -13,7 +13,6 @@ const Recomands = ({
   movieDetails2,
   setMovieDetails2,
   marked,
-  setMarked,
 }) => {
   const news = "Relentless";
   const news2 = "Diary";
@@ -59,12 +58,12 @@ const Recomands = ({
           })
         : ""
     );
+    recImgs.map((el) => el.isBookMarked === true);
   }
 
   return (
     <div className="main">
       <Search />
-
       <div className="tranding">
         <h1>Trending</h1>
         <ul>
@@ -126,10 +125,14 @@ const Recomands = ({
                 ""
               )}
               <div className="bookmark-cell">
-                <FaRegBookmark
-                  className="bookmark"
-                  onClick={() => pushToMarked(detail.id)}
-                />
+                {detail.isBookMarked ? (
+                  <BsBookmarkFill className="bookmark" />
+                ) : (
+                  <FaRegBookmark
+                    className="bookmark"
+                    onClick={() => pushToMarked(detail.id)}
+                  />
+                )}
               </div>
             </div>
             <div className="det">

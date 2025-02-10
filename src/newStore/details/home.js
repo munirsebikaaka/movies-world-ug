@@ -10,10 +10,11 @@ const HOME = ({
   setMovieDetails2,
   marked,
   setMarked,
+  setShowApp,
 }) => {
   return (
     <div className="home">
-      <AppNav />
+      <AppNav setShowApp={setShowApp} />
       <Recomands
         recImgs={recImgs}
         setRecImgs={setRecImgs}

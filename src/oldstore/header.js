@@ -1,12 +1,20 @@
 import { IoIosPlayCircle } from "react-icons/io";
-import { FaRegBookmark } from "react-icons/fa6";
 import { MdLocalMovies } from "react-icons/md";
+import { BsBookmarkFill } from "react-icons/bs";
+
 import Search from "../newStore/details/search";
 import AppNav from "../newStore/details/appNavigation";
 
-const BookMarks = ({ marked }) => {
+const BookMarks = ({ marked, setMarked }) => {
+  function del(id) {
+    const [element] = marked.filter((el) => el.id === id);
+    if (element) {
+      setMarked((marked = marked.filter((el) => el.id !== id)));
+    }
+    console.log(element);
+  }
   return (
-    <div>
+    <div className="container">
       <AppNav />
       <div className="main">
         <Search />
@@ -39,8 +47,8 @@ const BookMarks = ({ marked }) => {
                   ) : (
                     ""
                   )}
-                  <div className="bookmark-cell">
-                    <FaRegBookmark className="bookmark" />
+                  <div className="bookmark-cell" onClick={() => del(el.id)}>
+                    <BsBookmarkFill className="bookmark" />
                   </div>
                 </div>
                 <div className="det">

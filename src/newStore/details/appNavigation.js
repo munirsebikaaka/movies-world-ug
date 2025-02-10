@@ -8,20 +8,30 @@ import { NavLink } from "react-router-dom";
 const AppNav = () => {
   return (
     <nav>
-      <MdMovie className="link1" />
       <ul>
-        <NavLink to={"/"}>
-          <MdWindow className="link" />
-        </NavLink>
-        <NavLink to={"/movies"}>
-          <MdLocalMovies className="link" />
-        </NavLink>
-        <NavLink to={"/tvseries"}>
-          <TbDeviceTvOld className="link" />
-        </NavLink>
-        <NavLink to={"/bookmark"}>
-          <BsBookmarkFill className="link" />
-        </NavLink>
+        <button>
+          <MdMovie className="link1" />
+        </button>
+        <li>
+          <NavLink to={"/"}>
+            <MdWindow className="link" />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={"/movies"}>
+            <MdLocalMovies className="link" />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={"/tvseries"}>
+            <TbDeviceTvOld className="link" />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={"/bookmark"}>
+            <BsBookmarkFill className="link" />
+          </NavLink>
+        </li>
       </ul>
       <img src="imgs/nav.jpeg" alt="yo" />
     </nav>

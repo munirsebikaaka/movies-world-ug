@@ -1,58 +1,59 @@
 import { useState } from "react";
 
-const SignIn = ({ setAcounts }) => {
-  const [fullName, setFullName] = useState("");
+const SignIn = ({ setAcounts, setHasAccount, showApp, setShowApp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [rePassword, setRePassword] = useState("");
 
   function checkInputs() {
-    if (!fullName || !email || !password || !phone)
+    if (!email || !password || !rePassword)
       return alert("please fill in all the inputs");
     setAcounts((acounts) => [
       ...acounts,
-      { name: fullName, email: email, phone: phone, password: password },
+      { email: email, rePassword: rePassword, password: password },
     ]);
   }
   return (
-    <div className="login">
-      <div>
-        <input
-          type="text"
-          placeholder="name"
-          onChange={(e) => {
-            setFullName(e.target.value);
-          }}
-        />
-        <input
-          type="email"
-          placeholder="email address"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          placeholder="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <input
-          type="number"
-          placeholder="phone number"
-          onChange={(e) => {
-            setPhone(e.target.value);
-          }}
-        />
-        <button className="enter" onClick={checkInputs}>
-          click
-        </button>
-        <p>
-          aready has an acount <button className="sign">Log In</button>
-        </p>
-      </div>
-    </div>
+    <>
+      {!showApp && (
+        <div className="login">
+          <div>
+            <h1>Sign Up</h1>
+
+            <input
+              type="email"
+              placeholder="Email address"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <input
+              type="text"
+              placeholder="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <input
+              type="text"
+              placeholder="Repeat password"
+              onChange={(e) => {
+                setRePassword(e.target.value);
+              }}
+            />
+            <button onClick={checkInputs} className="enter">
+              Create an account
+            </button>
+            <p>
+              Already have an account?
+              <button onClick={() => setHasAccount(true)} className="sign">
+                Login
+              </button>
+            </p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 export default SignIn;

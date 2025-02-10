@@ -11,6 +11,9 @@ function App() {
   const [movieDetails, setMovieDetails] = useState([{}]);
   const [movieDetails2, setMovieDetails2] = useState([{}]);
   const [marked, setMarked] = useState([]);
+  const [showApp, setShowApp] = useState(true);
+  const [hasAccount, setHasAccount] = useState(true);
+
   const [acounts, setAcounts] = useState([
     {
       name: "codes",
@@ -27,6 +30,7 @@ function App() {
       year: 2000,
       id: 1,
       play: false,
+      isBookMarked: false,
     },
     {
       photoSrc: "imgs/img2.png",
@@ -35,14 +39,16 @@ function App() {
       year: 2000,
       id: 2,
       play: false,
+      isBookMarked: false,
     },
     {
       photoSrc: "imgs/img4.png",
       movieName: "movie 3",
       type: "series",
-      play: false,
-      id: 3,
       year: 2000,
+      id: 3,
+      play: false,
+      isBookMarked: false,
     },
     {
       photoSrc: "imgs/img3.png",
@@ -51,35 +57,73 @@ function App() {
       year: 2000,
       id: 4,
       play: false,
+      isBookMarked: false,
     },
   ]);
+
   return (
     <div>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <HOME
-                recImgs={recImgs}
-                setRecImgs={setRecImgs}
-                movieDetails={movieDetails}
-                setMovieDetails={setMovieDetails}
-                movieDetails2={movieDetails2}
-                setMovieDetails2={setMovieDetails2}
-                marked={marked}
-                setMarked={setMarked}
-              />
-            }
-          />
-          <Route path="movies" element={<Movies recImgs={recImgs} />} />
-          <Route path="tvseries" element={<TVSeries recImgs={recImgs} />} />
-          <Route path="bookmark" element={<BookMarks marked={marked} />} />
-        </Routes>
-      </BrowserRouter>
-
-      {/* <Login acounts={acounts} /> */}
-      {/* <SignIn acounts={acounts} setAcounts={setAcounts} /> */}
+      {hasAccount ? (
+        <Login
+          acounts={acounts}
+          setHasAccount={setHasAccount}
+          setShowApp={setShowApp}
+          showApp={showApp}
+        />
+      ) : (
+        <SignIn
+          acounts={acounts}
+          setAcounts={setAcounts}
+          setHasAccount={setHasAccount}
+          setShowApp={setShowApp}
+          showApp={showApp}
+        />
+      )}
+      {showApp && (
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <HOME
+                  recImgs={recImgs}
+                  setRecImgs={setRecImgs}
+                  movieDetails={movieDetails}
+                  setMovieDetails={setMovieDetails}
+                  movieDetails2={movieDetails2}
+                  setMovieDetails2={setMovieDetails2}
+                  marked={marked}
+                  setMarked={setMarked}
+                />
+              }
+            />
+            <Route
+              path="movies"
+              element={
+                <Movies
+                  recImgs={recImgs}
+                  setRecImgs={setRecImgs}
+                  marked={marked}
+                />
+              }
+            />
+            <Route
+              path="tvseries"
+              element={
+                <TVSeries
+                  recImgs={recImgs}
+                  setRecImgs={setRecImgs}
+                  marked={marked}
+                />
+              }
+            />
+            <Route
+              path="bookmark"
+              element={<BookMarks marked={marked} setMarked={setMarked} />}
+            />
+          </Routes>
+        </BrowserRouter>
+      )}
     </div>
   );
 }

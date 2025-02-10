@@ -5,9 +5,37 @@ import { FaRegBookmark } from "react-icons/fa6";
 import Search from "../newStore/details/search";
 import AppNav from "../newStore/details/appNavigation";
 
-const Movies = ({ recImgs }) => {
+const Movies = ({ recImgs, setRecImgs, marked }) => {
+  const changePlay = (id) => {
+    setRecImgs(
+      recImgs.map((items) =>
+        items.id === id ? { ...items, play: true } : items
+      )
+    );
+  };
+  const setDefault = (id) => {
+    setRecImgs(
+      recImgs.map((items) =>
+        items.id === id ? { ...items, play: false } : items
+      )
+    );
+  };
+  function pushToMarked(id) {
+    recImgs.map((el) =>
+      el.id === id
+        ? marked.push({
+            photoSrc: el.photoSrc,
+            movieName: el.movieName,
+            type: el.type,
+            year: el.year,
+            id: el.id,
+            play: el.play,
+          })
+        : ""
+    );
+  }
   return (
-    <div>
+    <div className="container">
       <AppNav />
       <div className="main">
         <Search />
@@ -16,8 +44,8 @@ const Movies = ({ recImgs }) => {
           {recImgs.map((detail) => (
             <li key={detail.movieName}>
               <div
-                // onMouseEnter={() => changePlay(detail.id)}
-                // onMouseLeave={() => setDefault(detail.id)}
+                onMouseEnter={() => changePlay(detail.id)}
+                onMouseLeave={() => setDefault(detail.id)}
                 className="list"
                 style={
                   detail.play === true
@@ -42,7 +70,7 @@ const Movies = ({ recImgs }) => {
                 <div className="bookmark-cell">
                   <FaRegBookmark
                     className="bookmark"
-                    // onClick={() => pushToMarked(detail.id)}
+                    onClick={() => pushToMarked(detail.id)}
                   />
                 </div>
               </div>

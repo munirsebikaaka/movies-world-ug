@@ -1,0 +1,32 @@
+@media (max-width: 850px) {
+  .main .movies-list {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .home,
+  .container {
+    flex-direction: column;
+  }
+  nav {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    padding: 10px 20px;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  nav ul button {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+}
+@media (max-width: 490px) {
+  .main .movies-list {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+  nav ul {
+    gap: 10px;
+  }
+}

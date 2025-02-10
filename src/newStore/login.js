@@ -1,44 +1,44 @@
 import { useState } from "react";
-import HOME from "./details/home";
-
-function Login({ acounts }) {
+function Login({ acounts, setHasAccount, showApp, setShowApp }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showHome, setShowHome] = useState(false);
 
   function checkInputs() {
     if (!email || !password) return alert("please fill in all the inputs");
     acounts.map(
-      (el) =>
-        email === el.email && password === el.password && setShowHome(true)
+      (el) => email === el.email && password === el.password && setShowApp(true)
     );
   }
   return (
     <>
-      {!showHome ? (
+      {!showApp && (
         <div className="login">
           <div>
-            <h1>LOGIN</h1>
+            <h1>Login</h1>
 
-            <label>Email Address</label>
+            <input
+              placeholder="Email Address"
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <br />
-            <input type="email" onChange={(e) => setEmail(e.target.value)} />
+            <input
+              type="text"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <br />
-            <label>Password</label>
-            <br />
-            <input type="text" onChange={(e) => setPassword(e.target.value)} />
-            <br />
-            <button className="enter" onClick={checkInputs}>
+            <button onClick={checkInputs} className="enter">
               Login to your account
             </button>
             <p>
-              I dont have an acount? <button className="sign">Sign Up</button>
+              Don’t have an acount?
+              <button onClick={() => setHasAccount(false)} className="sign">
+                Sign Up
+              </button>
             </p>
-            {/* {showHome ? <HOME /> : ""} */}
           </div>
         </div>
-      ) : (
-        <HOME />
       )}
     </>
   );
