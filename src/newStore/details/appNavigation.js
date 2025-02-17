@@ -8,28 +8,31 @@ import { NavLink } from "react-router-dom";
 const AppNav = () => {
   return (
     <nav>
+      <button className="outer-btn">
+        <MdMovie className="link1" />
+      </button>
       <ul>
-        <button>
+        <button className="inner-btn">
           <MdMovie className="link1" />
         </button>
         <li>
-          <NavLink to={"/"}>
-            <MdWindow className="link" />
+          <NavLink to={"/"} className="link">
+            <MdWindow />
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/movies"}>
-            <MdLocalMovies className="link" />
+          <NavLink to={"/movies"} className="link">
+            <MdLocalMovies />
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/tvseries"}>
-            <TbDeviceTvOld className="link" />
+          <NavLink to={"/tvseries"} className="link">
+            <TbDeviceTvOld />
           </NavLink>
         </li>
         <li>
-          <NavLink to={"/bookmark"}>
-            <BsBookmarkFill className="link" />
+          <NavLink to={"/bookmark"} className="link">
+            <BsBookmarkFill />
           </NavLink>
         </li>
       </ul>

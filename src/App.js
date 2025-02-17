@@ -2,10 +2,10 @@ import { useState } from "react";
 import Login from "./newStore/login";
 import SignIn from "./newStore/signIn";
 import HOME from "./newStore/details/home";
-import BookMarks from "./oldstore/header";
-import TVSeries from "./oldstore/recieveMoviesDetails";
+import BookMarks from "./oldstore/bookmarks";
+import TVSeries from "./oldstore/tvseries";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Movies from "./oldstore/moviesInfor";
+import Movies from "./oldstore/movies";
 
 function App() {
   const [movieDetails, setMovieDetails] = useState([{}]);

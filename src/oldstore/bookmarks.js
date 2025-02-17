@@ -11,8 +11,21 @@ const BookMarks = ({ marked, setMarked }) => {
     if (element) {
       setMarked((marked = marked.filter((el) => el.id !== id)));
     }
-    console.log(element);
   }
+  const changePlay = (id) => {
+    setMarked(
+      marked.map((items) =>
+        items.id === id ? { ...items, play: true } : items
+      )
+    );
+  };
+  const setDefault = (id) => {
+    setMarked(
+      marked.map((items) =>
+        items.id === id ? { ...items, play: false } : items
+      )
+    );
+  };
   return (
     <div className="container">
       <AppNav />
@@ -20,12 +33,14 @@ const BookMarks = ({ marked, setMarked }) => {
         <Search />
         <h1 className="head">Bookmarked Movies</h1>
         {marked.length < 1 ? (
-          <p>Bookmarks still EMPTY</p>
+          <p className="default-msg">You haven't bookmarked any movies yet!</p>
         ) : (
           <ul className="movies-list">
             {marked.map((el) => (
               <li key={el.movieName}>
                 <div
+                  onMouseEnter={() => changePlay(el.id)}
+                  onMouseLeave={() => setDefault(el.id)}
                   className="list"
                   style={
                     el.play === true

@@ -5,7 +5,7 @@ import { FaRegBookmark } from "react-icons/fa6";
 import Search from "../newStore/details/search";
 import AppNav from "../newStore/details/appNavigation";
 
-const Movies = ({ recImgs, setRecImgs, marked }) => {
+const TVSeries = ({ recImgs, setRecImgs, marked }) => {
   const changePlay = (id) => {
     setRecImgs(
       recImgs.map((items) =>
@@ -29,11 +29,18 @@ const Movies = ({ recImgs, setRecImgs, marked }) => {
             type: el.type,
             year: el.year,
             id: el.id,
-            play: el.play,
+            play: false,
           })
         : ""
     );
   }
+  const bookmarked = (id) => {
+    setRecImgs(
+      recImgs.map((items) =>
+        items.id === id ? { ...items, isBookMarked: true } : items
+      )
+    );
+  };
   return (
     <div className="container">
       <AppNav />
@@ -67,11 +74,18 @@ const Movies = ({ recImgs, setRecImgs, marked }) => {
                 ) : (
                   ""
                 )}
-                <div className="bookmark-cell">
-                  <FaRegBookmark
-                    className="bookmark"
-                    onClick={() => pushToMarked(detail.id)}
-                  />
+                <div
+                  className="bookmark-cell"
+                  onClick={() => bookmarked(detail.id)}
+                >
+                  {detail.isBookMarked ? (
+                    <BsBookmarkFill className="bookmark" />
+                  ) : (
+                    <FaRegBookmark
+                      className="bookmark"
+                      onClick={() => pushToMarked(detail.id)}
+                    />
+                  )}
                 </div>
               </div>
               <div className="det">
@@ -100,8 +114,8 @@ const Movies = ({ recImgs, setRecImgs, marked }) => {
             </li>
           ))}
         </ul>
-      </div>{" "}
+      </div>
     </div>
   );
 };
-export default Movies;
+export default TVSeries;

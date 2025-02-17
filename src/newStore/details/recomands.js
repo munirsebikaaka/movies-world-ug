@@ -54,18 +54,23 @@ const Recomands = ({
             type: el.type,
             year: el.year,
             id: el.id,
-            play: el.play,
+            play: false,
           })
         : ""
     );
-    recImgs.map((el) => el.isBookMarked === true);
   }
-
+  const bookmarked = (id) => {
+    setRecImgs(
+      recImgs.map((items) =>
+        items.id === id ? { ...items, isBookMarked: true } : items
+      )
+    );
+  };
   return (
     <div className="main">
       <Search />
       <div className="tranding">
-        <h1>Trending</h1>
+        <h1 className="head">Trending</h1>
         <ul>
           <li style={{ backgroundImage: "url(imgs/rec1.png)" }}>
             <div className="det">
@@ -124,7 +129,10 @@ const Recomands = ({
               ) : (
                 ""
               )}
-              <div className="bookmark-cell">
+              <div
+                className="bookmark-cell"
+                onClick={() => bookmarked(detail.id)}
+              >
                 {detail.isBookMarked ? (
                   <BsBookmarkFill className="bookmark" />
                 ) : (
