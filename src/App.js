@@ -6,14 +6,19 @@ import BookMarks from "./oldstore/bookmarks";
 import TVSeries from "./oldstore/tvseries";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Movies from "./oldstore/movies";
+import {
+  useGetMoviesDetail,
+  useGetSeriesDetail,
+  useGetTrandingDetail,
+} from "./newStore/apiCalls";
 
 function App() {
   const [movieDetails, setMovieDetails] = useState([{}]);
-  const [movieDetails2, setMovieDetails2] = useState([{}]);
+  const [tvseries, setTvSeries] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [marked, setMarked] = useState([]);
   const [showApp, setShowApp] = useState(true);
   const [hasAccount, setHasAccount] = useState(true);
-
   const [acounts, setAcounts] = useState([
     {
       name: "codes",
@@ -22,44 +27,18 @@ function App() {
       password: "codes",
     },
   ]);
-  const [recImgs, setRecImgs] = useState([
-    {
-      photoSrc: "imgs/img1.png",
-      movieName: "movie 1",
-      type: "movie",
-      year: 2000,
-      id: 1,
-      play: false,
-      isBookMarked: false,
-    },
-    {
-      photoSrc: "imgs/img2.png",
-      movieName: "movie 2",
-      type: "series",
-      year: 2000,
-      id: 2,
-      play: false,
-      isBookMarked: false,
-    },
-    {
-      photoSrc: "imgs/img4.png",
-      movieName: "movie 3",
-      type: "series",
-      year: 2000,
-      id: 3,
-      play: false,
-      isBookMarked: false,
-    },
-    {
-      photoSrc: "imgs/img3.png",
-      movieName: "movie 4",
-      type: "movie",
-      year: 2000,
-      id: 4,
-      play: false,
-      isBookMarked: false,
-    },
-  ]);
+
+  const [searchTrends, setSearchTrends] = useState("");
+  const [searchTvSeries, setSearchTvSeries] = useState("");
+  const [searchMovies, setSearchMovies] = useState("");
+
+  const [trend, setTrend] = useState(false);
+  const [sery, setSery] = useState(false);
+  const [movie, setMovie] = useState(false);
+
+  useGetTrandingDetail(setMovieDetails, searchTrends, setTrend);
+  useGetSeriesDetail(setTvSeries, searchTvSeries, setSery);
+  useGetMoviesDetail(setMovies, searchMovies, setMovie);
 
   return (
     <div>
@@ -86,14 +65,13 @@ function App() {
               path="/"
               element={
                 <HOME
-                  recImgs={recImgs}
-                  setRecImgs={setRecImgs}
                   movieDetails={movieDetails}
                   setMovieDetails={setMovieDetails}
-                  movieDetails2={movieDetails2}
-                  setMovieDetails2={setMovieDetails2}
                   marked={marked}
                   setMarked={setMarked}
+                  searchTrends={searchTrends}
+                  setSearchTrends={setSearchTrends}
+                  trend={trend}
                 />
               }
             />
@@ -101,9 +79,12 @@ function App() {
               path="movies"
               element={
                 <Movies
-                  recImgs={recImgs}
-                  setRecImgs={setRecImgs}
+                  movies={movies}
+                  setMovies={setMovies}
                   marked={marked}
+                  searchMovies={searchMovies}
+                  setSearchMovies={setSearchMovies}
+                  movie={movie}
                 />
               }
             />
@@ -111,9 +92,12 @@ function App() {
               path="tvseries"
               element={
                 <TVSeries
-                  recImgs={recImgs}
-                  setRecImgs={setRecImgs}
+                  tvseries={tvseries}
+                  setTvSeries={setTvSeries}
                   marked={marked}
+                  searchTvSeries={searchTvSeries}
+                  setSearchTvSeries={setSearchTvSeries}
+                  sery={sery}
                 />
               }
             />
