@@ -13,20 +13,13 @@ import {
 } from "./newStore/apiCalls";
 
 function App() {
-  const [movieDetails, setMovieDetails] = useState([{}]);
+  const [movieDetails, setMovieDetails] = useState([]);
   const [tvseries, setTvSeries] = useState([]);
   const [movies, setMovies] = useState([]);
   const [marked, setMarked] = useState([]);
-  const [showApp, setShowApp] = useState(true);
+  const [showApp, setShowApp] = useState(false);
   const [hasAccount, setHasAccount] = useState(true);
-  const [acounts, setAcounts] = useState([
-    {
-      name: "codes",
-      email: "co@gmail.com",
-      phone: "0742083075",
-      password: "codes",
-    },
-  ]);
+  const [acounts, setAcounts] = useState([]);
 
   const [searchTrends, setSearchTrends] = useState("");
   const [searchTvSeries, setSearchTvSeries] = useState("");

@@ -10,7 +10,6 @@ const HOME = ({
   searchTrends,
   setSearchTrends,
   trend,
-  // setTrend,
 }) => {
   return (
     <div className="home">
@@ -23,7 +22,6 @@ const HOME = ({
         searchTrends={searchTrends}
         setSearchTrends={setSearchTrends}
         trend={trend}
-        // setTrend={setTrend}
       />
     </div>
   );

@@ -2,20 +2,22 @@ import { useState } from "react";
 function Login({ acounts, setHasAccount, showApp, setShowApp }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fill, setFill] = useState("");
 
   function checkInputs() {
-    if (!email || !password) return alert("please fill in all the inputs");
+    if (!password) return setFill("Can't be empty!");
     acounts.map(
       (el) => email === el.email && password === el.password && setShowApp(true)
     );
+    acounts.map((el) => password !== el.password && setFill("Wrong password!"));
   }
   return (
     <>
       {!showApp && (
         <div className="login">
           <div>
+            <p className="erorr">{fill}</p>
             <h1>Login</h1>
-
             <input
               placeholder="Email Address"
               type="email"
@@ -23,7 +25,7 @@ function Login({ acounts, setHasAccount, showApp, setShowApp }) {
             />
             <br />
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />

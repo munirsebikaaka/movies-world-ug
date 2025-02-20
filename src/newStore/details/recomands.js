@@ -120,7 +120,7 @@ const Recomands = ({
             </li>
           ))
         ) : (
-          <h1>
+          <h1 className="loader">
             <BeatLoader color="white" />
           </h1>
         )}

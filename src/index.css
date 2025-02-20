@@ -340,3 +340,25 @@ nav img {
   padding: 20px;
   overflow: hidden;
 }
+.loader {
+  margin-left: 5px;
+}
+.login div {
+  position: relative;
+}
+.login div .erorr,
+.login div .erorr2,
+.login div .erorr3,
+.erorr1 {
+  position: absolute;
+  right: 10%;
+  top: 49.5%;
+  font-size: 15px;
+  color: var(--login-elements);
+}
+.login div .erorr2 {
+  top: 42%;
+}
+.login div .erorr3 {
+  top: 56%;
+}
