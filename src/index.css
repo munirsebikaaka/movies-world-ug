@@ -156,11 +156,15 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--main-app-color);
+}
+.bookmark-cell:hover {
+  background-color: var(--main-app-color);
+  color: #05080f;
 }
 .bookmark {
   width: 20px;
   height: 20px;
-  color: var(--main-app-color);
   width: 11.67px;
   height: 14px;
 }
@@ -187,7 +191,8 @@ button {
   margin: 25px auto;
 }
 
-.play {
+.play,
+.trad-play {
   display: inline-block;
   cursor: pointer;
   border: none;
@@ -215,6 +220,9 @@ button {
   width: 25px;
   height: 25px;
   color: var(--links-color);
+}
+.link:hover {
+  color: var(--login-elements);
 }
 .active {
   color: var(--main-app-color);
@@ -317,6 +325,7 @@ nav img {
   justify-content: end;
   cursor: pointer;
   margin-bottom: 10px;
+  position: relative;
 }
 .tranding ul li h1 {
   margin-bottom: 30px;
@@ -329,6 +338,28 @@ nav img {
 .tranding ul li:last-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+}
+.trand-icon-cell {
+  position: absolute;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #00040ec2;
+  color: var(--main-app-color);
+  border-radius: 50%;
+  right: 0%;
+  top: 5%;
+  transform: translate(-50%);
+}
+.trand-icon-cell:hover {
+  background-color: var(--main-app-color);
+  color: var(--main-app-background);
+}
+.trad-play {
+  position: absolute;
+  bottom: 40%;
+  left: 28%;
+  transform: translate(50%);
 }
 /* CONTAINER */
 .home,

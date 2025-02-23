@@ -6,6 +6,7 @@ import { IoSearch } from "react-icons/io5";
 import { BeatLoader } from "react-spinners";
 
 import { changePlay, setDefault, pushToMarked, bookmarked } from "../functions";
+import { useState } from "react";
 
 const Recomands = ({
   movieDetails,
@@ -15,6 +16,15 @@ const Recomands = ({
   setSearchTrends,
   trend,
 }) => {
+  const [hoverT1, setHoverT1] = useState(false);
+  const [hoverT2, setHoverT2] = useState(false);
+  const [hoverT3, setHoverT3] = useState(false);
+  function setHover(setUnDefault) {
+    setUnDefault(true);
+  }
+  function setDeHover(setDefault) {
+    setDefault(false);
+  }
   return (
     <div className="main">
       <div className="search">
@@ -29,7 +39,28 @@ const Recomands = ({
       <div className="tranding">
         <h1 className="head">Trending</h1>
         <ul>
-          <li style={{ backgroundImage: "url(imgs/rec1.png)" }}>
+          <li
+            onMouseEnter={() => setHover(setHoverT1)}
+            onMouseLeave={() => setDeHover(setHoverT1)}
+            style={
+              !hoverT1
+                ? { backgroundImage: "url(imgs/rec1.png)" }
+                : {
+                    backgroundImage:
+                      " linear-gradient(#00000040,#00000040),url(imgs/rec1.png)",
+                  }
+            }
+          >
+            <div className="trand-icon-cell">
+              <FaRegBookmark className="trand-icon" />
+            </div>
+            {hoverT1 && (
+              <button className="trad-play">
+                <IoIosPlayCircle className="icon-b" />
+                Play
+              </button>
+            )}
+
             <div className="det">
               <p className="year">
                 2019 <MdLocalMovies />
@@ -38,7 +69,27 @@ const Recomands = ({
             </div>
             <h1>Beyond Earth</h1>
           </li>
-          <li style={{ backgroundImage: "url(imgs/rec2.png)" }}>
+          <li
+            onMouseEnter={() => setHover(setHoverT2)}
+            onMouseLeave={() => setDeHover(setHoverT2)}
+            style={
+              !hoverT2
+                ? { backgroundImage: "url(imgs/rec2.png)" }
+                : {
+                    backgroundImage:
+                      "linear-gradient(#00000040,#00000040),url(imgs/rec2.png)",
+                  }
+            }
+          >
+            <div className="trand-icon-cell">
+              <FaRegBookmark className="trand-icon" />
+            </div>
+            {hoverT2 && (
+              <button className="trad-play">
+                <IoIosPlayCircle className="icon-b" />
+                Play
+              </button>
+            )}
             <div className="det">
               <p className="year">
                 2021 <MdLocalMovies />
@@ -47,7 +98,27 @@ const Recomands = ({
             </div>
             <h1>Bottom Gear</h1>
           </li>
-          <li style={{ backgroundImage: "url(imgs/rec3.png)" }}>
+          <li
+            onMouseEnter={() => setHover(setHoverT3)}
+            onMouseLeave={() => setDeHover(setHoverT3)}
+            style={
+              !hoverT3
+                ? { backgroundImage: "url(imgs/rec3.png)" }
+                : {
+                    backgroundImage:
+                      "linear-gradient(#00000040,#00000040),url(imgs/rec3.png)",
+                  }
+            }
+          >
+            <div className="trand-icon-cell">
+              <FaRegBookmark className="trand-icon" />
+            </div>
+            {hoverT3 && (
+              <button className="trad-play">
+                <IoIosPlayCircle className="icon-b" />
+                Play
+              </button>
+            )}
             <div className="det">
               <p className="year">
                 2019 <MdLocalMovies />
