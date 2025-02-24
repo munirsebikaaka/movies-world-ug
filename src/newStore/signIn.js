@@ -4,11 +4,12 @@ const SignIn = ({ setAcounts, setHasAccount, showApp, setShowApp }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [checkFill, setCheckFill] = useState(false);
+
   const [match, setMatch] = useState("");
-  const [fill, setFill] = useState("");
 
   function checkInputs() {
-    if (!password) return setFill("Can't be empty!");
+    if (!password) return setCheckFill(true);
     if (password !== rePassword) return setMatch("Doesn't match!");
     setAcounts((acounts) => [
       ...acounts,
@@ -20,7 +21,7 @@ const SignIn = ({ setAcounts, setHasAccount, showApp, setShowApp }) => {
       {!showApp && (
         <div className="login">
           <div>
-            <p className="erorr2">{fill}</p>
+            <p className="erorr2">{checkFill ? "Can,t be empty!" : ""}</p>
             <p className="erorr3">{match}</p>
             <h1>Sign Up</h1>
             <input
@@ -31,6 +32,11 @@ const SignIn = ({ setAcounts, setHasAccount, showApp, setShowApp }) => {
               }}
             />
             <input
+              style={
+                checkFill
+                  ? { borderBottom: "1px solid red" }
+                  : { borderBottom: "1px solid #5a698f" }
+              }
               type="password"
               placeholder="password"
               onChange={(e) => {
